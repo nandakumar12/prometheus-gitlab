@@ -1,0 +1,16 @@
+**Fingerprint**: {{ .Fingerprint }}
+
+{{ range  $key, $value := .Annotations }}
+**{{ $key }}**: {{ $value }}
+{{ end }}
+
+**Status**: {{ .Status }}
+
+**StartsAt**: {{ .StartsAt }}
+
+**EndsAt**: {{ .EndsAt }}
+
+**GeneratorUrl**: {{ .GeneratorUrl }}
+
+**alertmanagerUrl**: {{ .AlertmanagerUrl }}
+
