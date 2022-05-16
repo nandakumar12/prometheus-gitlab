@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager-gitlab
+spec:
+  selector:
+    matchLabels:
+      app: alertmanager-gitlab
+  template:
+    metadata:
+      labels:
+        app: alertmanager-gitlab
+    spec:
+      containers:
+      - name: alertmanager-gitlab
+        image: nandakumar12/prometheus-gitlab:1.0
+        env:
+          - name: GITLAB_PROJECT_ID
+            valueFrom:
+              secretKeyRef:
+                name: alertmanager-gitlab
+                key: GITLAB_PROJECT_ID
+          - name: GITLAB_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: alertmanager-gitlab
+                key: GITLAB_API_TOKEN
+              
+        ports:
+          - containerPort: 8080
